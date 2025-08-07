@@ -1,0 +1,134 @@
+{
+  "cli": {
+    "version": ">= 5.9.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium"
+      },
+      "android": {
+        "resourceClass": "medium"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium"
+      },
+      "android": {
+        "resourceClass": "medium",
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "ios": {
+        "resourceClass": "m-medium"
+      },
+      "android": {
+        "resourceClass": "medium"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "your-apple-id@example.com",
+        "ascAppId": "123456789",
+        "appleTeamId": "ABCDEFGHIJ"
+      },
+      "android": {
+        "serviceAccountKeyPath": "../google-play-service-account.json",
+        "track": "internal"
+      }
+    }
+  },
+  "expo": {
+    "name": "LifeLens",
+    "slug": "lifelens",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lifelens.app",
+      "buildNumber": "1",
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to analyze images for decision making.",
+        "NSPhotoLibraryUsageDescription": "This app needs access to your photo library to analyze images for decision making.",
+        "NSLocationWhenInUseUsageDescription": "This app uses location to provide context-aware decision suggestions.",
+        "NSUserNotificationsUsageDescription": "This app sends notifications for mood reminders and decision updates."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.lifelens.app",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "VIBRATE",
+        "RECEIVE_BOOT_COMPLETED",
+        "WAKE_LOCK"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-location",
+      "expo-image-picker",
+      "expo-media-library",
+      "expo-secure-store",
+      "expo-haptics",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#ffffff"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "newArchEnabled": false
+          },
+          "android": {
+            "newArchEnabled": false
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-eas-project-id"
+      }
+    },
+    "owner": "your-expo-username"
+  }
+}

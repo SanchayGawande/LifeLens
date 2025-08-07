@@ -1,0 +1,138 @@
+name: Mobile Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Platform to build'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+        - all
+        - ios
+        - android
+      profile:
+        description: 'Build profile'
+        required: true
+        default: 'preview'
+        type: choice
+        options:
+        - development
+        - preview
+        - production
+  push:
+    branches: [main]
+    paths:
+    - 'frontend/**'
+    - 'packages/shared-types/**'
+    - 'eas.json'
+  pull_request:
+    branches: [main]
+    paths:
+    - 'frontend/**'
+    - 'packages/shared-types/**'
+    - 'eas.json'
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  build:
+    name: EAS Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: ${{ github.event.inputs.platform == 'all' && fromJson('["ios", "android"]') || fromJson(format('["{0}"]', github.event.inputs.platform || 'android')) }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Setup Expo CLI
+        uses: expo/setup-expo@v2
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build shared types
+        run: npm run build:types
+
+      - name: Verify Expo configuration
+        run: |
+          cd frontend
+          expo doctor
+
+      - name: EAS Build
+        run: |
+          cd frontend
+          eas build --platform ${{ matrix.platform }} --profile ${{ github.event.inputs.profile || 'preview' }} --non-interactive --no-wait
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+  submit:
+    name: Submit to Store
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event.inputs.profile == 'production'
+    strategy:
+      matrix:
+        platform: ${{ github.event.inputs.platform == 'all' && fromJson('["ios", "android"]') || fromJson(format('["{0}"]', github.event.inputs.platform)) }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Expo CLI
+        uses: expo/setup-expo@v2
+        with:
+          expo-version: latest
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Submit to ${{ matrix.platform }} store
+        run: |
+          cd frontend
+          eas submit --platform ${{ matrix.platform }} --latest --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+
+  notify:
+    name: Notify Build Status
+    runs-on: ubuntu-latest
+    needs: [build, submit]
+    if: always()
+
+    steps:
+      - name: Notify success
+        if: needs.build.result == 'success'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: success
+          channel: '#mobile-builds'
+          message: '📱 Mobile build completed successfully for ${{ github.event.inputs.platform || "android" }} platform!'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Notify failure
+        if: needs.build.result == 'failure'
+        uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          channel: '#mobile-builds'
+          message: '❌ Mobile build failed for ${{ github.event.inputs.platform || "android" }} platform!'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

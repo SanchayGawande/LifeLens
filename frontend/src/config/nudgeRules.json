@@ -1,0 +1,348 @@
+{
+  "version": "1.0",
+  "rules": [
+    {
+      "id": "morning_energy_planning",
+      "priority": 1,
+      "active": true,
+      "conditions": [
+        {
+          "type": "time",
+          "field": "hour",
+          "operator": "between",
+          "value": [7, 10]
+        },
+        {
+          "type": "mood",
+          "field": "moodSentiment",
+          "operator": "includes",
+          "value": ["positive", "neutral"]
+        },
+        {
+          "type": "activity",
+          "field": "workDecisions",
+          "operator": "less_than",
+          "value": 2
+        }
+      ],
+      "nudge": {
+        "title": "Good morning! ☀️",
+        "message": "You seem energized today. How about planning something exciting for later?",
+        "icon": "sunny",
+        "color": "#f59e0b",
+        "actionable": true,
+        "actionText": "Make a Plan",
+        "type": "planning",
+        "category": "productivity"
+      }
+    },
+    {
+      "id": "afternoon_fatigue_rest",
+      "priority": 2,
+      "active": true,
+      "conditions": [
+        {
+          "type": "time",
+          "field": "hour",
+          "operator": "between",
+          "value": [14, 17]
+        },
+        {
+          "type": "mood",
+          "field": "moodSentiment",
+          "operator": "includes",
+          "value": ["negative", "neutral"]
+        },
+        {
+          "type": "mood",
+          "field": "moodConfidence",
+          "operator": "greater_than",
+          "value": 0.6
+        }
+      ],
+      "nudge": {
+        "title": "Feeling tired? 😴",
+        "message": "Afternoon energy dips are normal. Consider a short break or some fresh air.",
+        "icon": "leaf",
+        "color": "#10b981",
+        "actionable": true,
+        "actionText": "Take a Break",
+        "type": "rest",
+        "category": "wellness"
+      }
+    },
+    {
+      "id": "good_weather_outdoor",
+      "priority": 3,
+      "active": true,
+      "conditions": [
+        {
+          "type": "weather",
+          "field": "isGoodWeather",
+          "operator": "boolean",
+          "value": true
+        },
+        {
+          "type": "activity",
+          "field": "outdoorDecisions",
+          "operator": "less_than",
+          "value": 1
+        },
+        {
+          "type": "time",
+          "field": "hour",
+          "operator": "between",
+          "value": [9, 18]
+        }
+      ],
+      "nudge": {
+        "title": "Beautiful day outside! 🌞",
+        "message": "Perfect weather for a walk or outdoor activity. When did you last get some fresh air?",
+        "icon": "walk",
+        "color": "#3b82f6",
+        "actionable": true,
+        "actionText": "Go Outside",
+        "type": "outdoor",
+        "category": "activity"
+      }
+    },
+    {
+      "id": "evening_reflection",
+      "priority": 4,
+      "active": true,
+      "conditions": [
+        {
+          "type": "time",
+          "field": "hour",
+          "operator": "between",
+          "value": [19, 22]
+        },
+        {
+          "type": "mood",
+          "field": "moodSentiment",
+          "operator": "includes",
+          "value": ["positive", "neutral"]
+        }
+      ],
+      "nudge": {
+        "title": "How was your day? 🌅",
+        "message": "Evening is a great time to reflect and plan for tomorrow.",
+        "icon": "journal",
+        "color": "#8b5cf6",
+        "actionable": true,
+        "actionText": "Reflect",
+        "type": "reflection",
+        "category": "mindfulness"
+      }
+    },
+    {
+      "id": "weekend_motivation",
+      "priority": 5,
+      "active": true,
+      "conditions": [
+        {
+          "type": "time",
+          "field": "isWeekend",
+          "operator": "boolean",
+          "value": true
+        },
+        {
+          "type": "time",
+          "field": "hour",
+          "operator": "between",
+          "value": [8, 12]
+        },
+        {
+          "type": "mood",
+          "field": "moodSentiment",
+          "operator": "includes",
+          "value": ["positive"]
+        }
+      ],
+      "nudge": {
+        "title": "Happy weekend! 🎉",
+        "message": "Great mood for weekend adventures. What would make this day special?",
+        "icon": "happy",
+        "color": "#ec4899",
+        "actionable": true,
+        "actionText": "Plan Adventure",
+        "type": "weekend",
+        "category": "lifestyle"
+      }
+    },
+    {
+      "id": "meal_time_reminder",
+      "priority": 6,
+      "active": true,
+      "conditions": [
+        {
+          "type": "time",
+          "field": "hour",
+          "operator": "includes",
+          "value": [12, 13, 18, 19]
+        },
+        {
+          "type": "activity",
+          "field": "foodDecisions",
+          "operator": "less_than",
+          "value": 2
+        }
+      ],
+      "nudge": {
+        "title": "Meal time! 🍽️",
+        "message": "Your body needs fuel. How about deciding what to eat?",
+        "icon": "restaurant",
+        "color": "#f97316",
+        "actionable": true,
+        "actionText": "Choose Food",
+        "type": "food",
+        "category": "health"
+      }
+    },
+    {
+      "id": "rainy_day_indoor",
+      "priority": 7,
+      "active": true,
+      "conditions": [
+        {
+          "type": "weather",
+          "field": "weatherMain",
+          "operator": "includes",
+          "value": ["Rain", "Thunderstorm"]
+        },
+        {
+          "type": "time",
+          "field": "hour",
+          "operator": "between",
+          "value": [10, 20]
+        }
+      ],
+      "nudge": {
+        "title": "Cozy rainy day 🌧️",
+        "message": "Perfect weather for indoor activities. How about something creative or relaxing?",
+        "icon": "home",
+        "color": "#6366f1",
+        "actionable": true,
+        "actionText": "Stay Cozy",
+        "type": "indoor",
+        "category": "comfort"
+      }
+    },
+    {
+      "id": "work_break_reminder",
+      "priority": 8,
+      "active": true,
+      "conditions": [
+        {
+          "type": "activity",
+          "field": "workDecisions",
+          "operator": "greater_than",
+          "value": 3
+        },
+        {
+          "type": "time",
+          "field": "hour",
+          "operator": "between",
+          "value": [10, 17]
+        },
+        {
+          "type": "time",
+          "field": "isWeekend",
+          "operator": "boolean",
+          "value": false
+        }
+      ],
+      "nudge": {
+        "title": "You've been productive! 💼",
+        "message": "Multiple work decisions today. Time for a well-deserved break?",
+        "icon": "time",
+        "color": "#0891b2",
+        "actionable": true,
+        "actionText": "Take Break",
+        "type": "break",
+        "category": "productivity"
+      }
+    },
+    {
+      "id": "social_encouragement",
+      "priority": 9,
+      "active": true,
+      "conditions": [
+        {
+          "type": "mood",
+          "field": "moodSentiment",
+          "operator": "includes",
+          "value": ["positive"]
+        },
+        {
+          "type": "time",
+          "field": "isWeekend",
+          "operator": "boolean",
+          "value": true
+        },
+        {
+          "type": "activity",
+          "field": "socialDecisions",
+          "operator": "less_than",
+          "value": 1
+        }
+      ],
+      "nudge": {
+        "title": "Feeling social? 👥",
+        "message": "You're in a great mood! Maybe reach out to friends or family?",
+        "icon": "people",
+        "color": "#dc2626",
+        "actionable": true,
+        "actionText": "Connect",
+        "type": "social",
+        "category": "relationships"
+      }
+    },
+    {
+      "id": "late_night_wind_down",
+      "priority": 10,
+      "active": true,
+      "conditions": [
+        {
+          "type": "time",
+          "field": "hour",
+          "operator": "between",
+          "value": [22, 24]
+        },
+        {
+          "type": "mood",
+          "field": "moodSentiment",
+          "operator": "includes",
+          "value": ["neutral", "negative"]
+        }
+      ],
+      "nudge": {
+        "title": "Wind down time 🌙",
+        "message": "Late evening is perfect for relaxing activities to prepare for sleep.",
+        "icon": "moon",
+        "color": "#4338ca",
+        "actionable": true,
+        "actionText": "Relax",
+        "type": "sleep",
+        "category": "wellness"
+      }
+    }
+  ],
+  "settings": {
+    "maxNudgesPerDay": 3,
+    "minTimeBetweenNudges": 120,
+    "respectDismissalPeriod": 180,
+    "adaptToUserFeedback": true,
+    "learningEnabled": true
+  },
+  "categories": {
+    "productivity": { "color": "#f59e0b", "icon": "briefcase" },
+    "wellness": { "color": "#10b981", "icon": "heart" },
+    "activity": { "color": "#3b82f6", "icon": "bicycle" },
+    "mindfulness": { "color": "#8b5cf6", "icon": "flower" },
+    "lifestyle": { "color": "#ec4899", "icon": "sparkles" },
+    "health": { "color": "#f97316", "icon": "fitness" },
+    "comfort": { "color": "#6366f1", "icon": "home" },
+    "relationships": { "color": "#dc2626", "icon": "people" }
+  }
+}

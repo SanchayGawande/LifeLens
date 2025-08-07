@@ -1,0 +1,250 @@
+{
+  // Editor settings
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.trimAutoWhitespace": true,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+
+  // TypeScript settings
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.includePackageJsonAutoImports": "on",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.format.enable": true,
+  "typescript.format.insertSpaceAfterCommaDelimiter": true,
+  "typescript.format.insertSpaceAfterConstructor": false,
+  "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": true,
+  "typescript.format.insertSpaceAfterKeywordsInControlFlowStatements": true,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+  "typescript.format.insertSpaceAfterSemicolonInForStatements": true,
+  "typescript.format.insertSpaceBeforeAndAfterBinaryOperators": true,
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": false,
+  "typescript.format.placeOpenBraceOnNewLineForControlBlocks": false,
+  "typescript.format.placeOpenBraceOnNewLineForFunctions": false,
+  "typescript.inlayHints.enableAll": true,
+
+  // ESLint settings
+  "eslint.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.workingDirectories": [
+    "backend",
+    "frontend",
+    "packages/shared-types"
+  ],
+
+  // Prettier settings
+  "prettier.enable": true,
+  "prettier.configPath": "./.prettierrc",
+  "prettier.requireConfig": true,
+
+  // File associations
+  "files.associations": {
+    "*.json": "jsonc",
+    "*.js": "javascript",
+    "*.jsx": "javascriptreact",
+    "*.ts": "typescript",
+    "*.tsx": "typescriptreact"
+  },
+
+  // Search settings
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/coverage": true,
+    "**/.expo": true,
+    "**/web-build": true,
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true
+  },
+
+  // Files settings
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.expo": true,
+    "**/web-build": true
+  },
+
+  // Workspace settings
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.paths": true,
+  "javascript.suggest.paths": true,
+  "path-intellisense.extensionOnImport": true,
+  "path-intellisense.showHiddenFiles": false,
+
+  // Emmet settings
+  "emmet.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html",
+    "javascript": "html",
+    "javascriptreact": "html"
+  },
+  "emmet.triggerExpansionOnTab": true,
+
+  // Git settings
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false,
+  "git.autofetch": true,
+  "git.postCommitCommand": "sync",
+
+  // Terminal settings
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.env.osx": {
+    "PATH": "${workspaceFolder}/node_modules/.bin:${env:PATH}"
+  },
+
+  // React Native and Expo specific settings
+  "react-native-tools.showUserTips": false,
+  "react-native-tools.packager.port": 8081,
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.expo/**": true,
+    "**/web-build/**": true
+  },
+
+  // Todo Tree settings for better task management
+  "todo-tree.tree.showScanModeButton": false,
+  "todo-tree.highlights.defaultHighlight": {
+    "icon": "alert",
+    "type": "text",
+    "foreground": "red",
+    "background": "white",
+    "opacity": 50,
+    "iconColour": "blue"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "icon": "check",
+      "foreground": "yellow"
+    },
+    "FIXME": {
+      "icon": "alert",
+      "foreground": "red"
+    },
+    "NOTE": {
+      "icon": "note",
+      "foreground": "blue"
+    },
+    "HACK": {
+      "icon": "alert",
+      "foreground": "orange"
+    },
+    "XXX": {
+      "icon": "alert",
+      "foreground": "red"
+    }
+  },
+
+  // Tailwind CSS settings
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    "tw`([^`]*)",
+    "tw=\"([^\"]*)",
+    "tw={\"([^\"}]*)",
+    "tw\\.\\w+`([^`]*)",
+    "tw\\(.*?\\)`([^`]*)"
+  ],
+
+  // JSON settings
+  "json.format.enable": true,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Markdown settings
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+
+  // Language specific formatting
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+
+  // Python settings for sentiment service
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "python.defaultInterpreterPath": "./services/sentiment/venv/bin/python",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "black",
+
+  // Extension specific settings
+  "extensions.ignoreRecommendations": false,
+  "workbench.startupEditor": "welcomePageInEmptyWorkbench",
+  "workbench.colorTheme": "Default Dark+",
+  "workbench.iconTheme": "vs-seti",
+
+  // Performance settings
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/.expo/**": true,
+    "**/web-build/**": true,
+    "**/coverage/**": true
+  },
+  "typescript.disableAutomaticTypeAcquisition": false,
+  "typescript.preferences.includePackageJsonAutoImports": "on"
+}

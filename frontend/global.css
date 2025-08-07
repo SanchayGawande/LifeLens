@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for React Native Web compatibility */
+html, body, #root {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Custom utility classes */
+.text-shadow {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, #d946ef 0%, #c026d3 100%);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+/* Custom animations for React Native Web */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .shimmer {
+    background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  }
+}
+
+/* Accessibility improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles for better accessibility */
+.focus-ring:focus {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar for web */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-track {
+      background: #2a2a2a;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #555;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #777;
+    }
+  }
+}

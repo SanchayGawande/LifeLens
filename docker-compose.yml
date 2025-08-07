@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - SENTIMENT_SERVICE_URL=http://sentiment:8000
+      - REDIS_URL=redis://redis:6379
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - sentiment
+      - redis
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  sentiment:
+    build: ./services/sentiment
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+    volumes:
+      - ./services/sentiment:/app
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Optional: Include PostgreSQL for local development
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: lifelens
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+  redis_data:

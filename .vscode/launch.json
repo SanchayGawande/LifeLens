@@ -1,0 +1,90 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Backend",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/src/index.ts",
+      "outFiles": ["${workspaceFolder}/backend/dist/**/*.js"],
+      "runtimeArgs": ["-r", "ts-node/register"],
+      "env": {
+        "NODE_ENV": "development",
+        "PORT": "3000"
+      },
+      "envFile": "${workspaceFolder}/backend/.env",
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "restart": true,
+      "protocol": "inspector",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Debug Backend Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/node_modules/.bin/jest",
+      "args": ["--runInBand"],
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "openOnSessionStart",
+      "env": {
+        "NODE_ENV": "test"
+      },
+      "envFile": "${workspaceFolder}/backend/.env"
+    },
+    {
+      "name": "Debug Frontend Tests",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/frontend/node_modules/.bin/jest",
+      "args": ["--runInBand"],
+      "cwd": "${workspaceFolder}/frontend",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "Debug Sentiment Service",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/services/sentiment/app/main.py",
+      "module": "uvicorn",
+      "args": ["app.main:app", "--reload", "--port", "8000"],
+      "cwd": "${workspaceFolder}/services/sentiment",
+      "env": {
+        "PORT": "8000"
+      },
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Attach to React Native Metro",
+      "type": "reactnative",
+      "request": "attach",
+      "cwd": "${workspaceFolder}/frontend",
+      "port": 8081
+    },
+    {
+      "name": "Debug iOS Simulator",
+      "type": "reactnative",
+      "request": "launch",
+      "platform": "ios",
+      "cwd": "${workspaceFolder}/frontend",
+      "target": "simulator"
+    },
+    {
+      "name": "Debug Android Emulator",
+      "type": "reactnative",
+      "request": "launch",
+      "platform": "android",
+      "cwd": "${workspaceFolder}/frontend",
+      "target": "emulator"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug Full Stack",
+      "configurations": ["Debug Backend", "Attach to React Native Metro"]
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "recommendations": [
+    // Essential TypeScript and JavaScript extensions
+    "ms-vscode.vscode-typescript-next",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-vscode.vscode-json",
+
+    // React and React Native extensions
+    "ms-vscode.vscode-react-native",
+    "msjsdiag.vscode-react-native",
+    "formulahendry.auto-rename-tag",
+    "bradlc.vscode-tailwindcss",
+    "steoates.autoimport-es6-ts",
+
+    // TypeScript specific extensions
+    "usernamehw.errorlens",
+    "ms-vscode.vscode-typescript-next",
+    "typescript-importer.typescript-importer",
+    "ms-typescript.typescript-tools",
+
+    // Git and version control
+    "eamodio.gitlens",
+    "github.vscode-pull-request-github",
+    "github.copilot",
+    "github.copilot-chat",
+
+    // Debugging and testing
+    "ms-vscode.vscode-jest",
+    "orta.vscode-jest",
+    "ms-python.python",
+    "ms-python.black-formatter",
+
+    // Development tools
+    "christian-kohler.path-intellisense",
+    "gruntfuggly.todo-tree",
+    "streetsidesoftware.code-spell-checker",
+    "bradlc.vscode-tailwindcss",
+    "ms-vscode.vscode-json",
+
+    // Mobile development
+    "expo.vscode-expo-tools",
+    "ms-vscode.vscode-react-native",
+
+    // Productivity extensions
+    "alefragnani.bookmarks",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "christian-kohler.npm-intellisense",
+    "bradlc.vscode-tailwindcss",
+
+    // Code quality and formatting
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ms-python.flake8",
+    "ms-python.pylint",
+
+    // Documentation and comments
+    "aaron-bond.better-comments",
+    "bierner.markdown-preview-github-styles",
+    "yzhang.markdown-all-in-one",
+
+    // Theme and icons
+    "vscode-icons-team.vscode-icons",
+    "pkief.material-icon-theme",
+
+    // Workspace management
+    "ms-vscode.vscode-workspace-trust",
+    "ms-vscode-remote.remote-containers",
+    "ms-azuretools.vscode-docker"
+  ]
+}

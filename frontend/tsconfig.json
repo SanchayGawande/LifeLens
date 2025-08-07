@@ -1,0 +1,49 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"],
+      "@components/*": ["components/*"],
+      "@screens/*": ["screens/*"],
+      "@services/*": ["services/*"],
+      "@config/*": ["config/*"],
+      "@types/*": ["types/*"],
+      "@utils/*": ["utils/*"],
+      "@assets/*": ["../assets/*"]
+    },
+    "types": ["react-native", "@types/jest"],
+    "typeRoots": ["node_modules/@types", "./src/types"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": [
+    "src/**/*",
+    "App.tsx",
+    "*.ts",
+    "*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "web-build",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx"
+  ]
+}

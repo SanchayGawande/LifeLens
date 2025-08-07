@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "LifeLens",
+    "slug": "lifelens",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6366f1"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lifelens.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#6366f1"
+      },
+      "package": "com.lifelens.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "webpack"
+    },
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "lifelens-development"
+      }
+    }
+  }
+}

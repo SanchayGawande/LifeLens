@@ -1,0 +1,323 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install All Dependencies",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "install:all"],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build All",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": ["Build Shared Types"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "Build Shared Types",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build:types"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "Build Backend",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build:backend"],
+      "group": "build",
+      "dependsOn": ["Build Shared Types"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "Build Frontend",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build:frontend"],
+      "group": "build",
+      "dependsOn": ["Build Shared Types"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test All",
+      "type": "shell",
+      "command": "npm",
+      "args": ["test"],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "dependsOn": ["Build Shared Types"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test Backend",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "test:backend"],
+      "group": "test",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Test Frontend",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "test:frontend"],
+      "group": "test",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Lint All",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "lint"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "Lint Fix All",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "lint:fix"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "Type Check All",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "typecheck"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "Format Code",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "format"],
+      "group": "test",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Development",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev"],
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated"
+      },
+      "problemMatcher": {
+        "owner": "typescript",
+        "source": "ts",
+        "applyTo": "closedDocuments",
+        "fileLocation": ["relative", "${cwd}"],
+        "pattern": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": {
+            "regexp": "(.*?)"
+          },
+          "endsPattern": {
+            "regexp": "Compiled|Failed"
+          }
+        }
+      }
+    },
+    {
+      "label": "Start Backend",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev:backend"],
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Frontend",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev:frontend"],
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Sentiment Service",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev:sentiment"],
+      "group": "build",
+      "isBackground": true,
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker Compose Up",
+      "type": "shell",
+      "command": "docker-compose",
+      "args": ["up", "-d"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker Compose Down",
+      "type": "shell",
+      "command": "docker-compose",
+      "args": ["down"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean All",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "clean"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Reset Node Modules",
+      "type": "shell",
+      "command": "rm",
+      "args": ["-rf", "node_modules", "backend/node_modules", "frontend/node_modules", "packages/shared-types/node_modules"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
