@@ -16,7 +16,7 @@ LifeLens is an AI-powered mobile app that helps users make everyday choices like
 
 ```
 LifeLens/
-├── frontend/                 # React Native Expo app
+├── frontend/                 # Vue app
 │   ├── src/
 │   │   ├── screens/         # App screens
 │   │   ├── components/      # Reusable components
@@ -45,7 +45,6 @@ LifeLens/
 
 - Node.js 18+
 - Python 3.11+
-- Expo CLI (`npm install -g @expo/cli`)
 - Supabase account
 - OpenRouter API key
 
