@@ -4,7 +4,7 @@ LifeLens is an AI-powered mobile app that helps users make everyday choices like
 
 ## 🏗️ Architecture
 
-- **Frontend**: React Native with Expo (cross-platform mobile app)
+- **Frontend**: mobile-first interface in Vue.js (cross-platform mobile app)
 - **Backend**: Node.js with Express (RESTful API)
 - **Database**: Supabase PostgreSQL with Row Level Security
 - **Authentication**: Supabase Auth (email/password)
